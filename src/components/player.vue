@@ -28,8 +28,8 @@
             <div class="player-cube">
                 <div class="begin-time">{{ currentTime }}</div>
                 <div class="cube"
-                    @mousedown="isdrag=true; draging($event)"
-                    @mouseup="isdrag=false;  player.play()"
+                    @mousedown="mousedowning($event)"
+                    @mouseup="mouseup($event)"
                     @mousemove="isdrag&&draging($event)">
                     <div class="cube-now" :style="{width:calcNow()+'%'}">
                         <div class="circle" :style="{left:calcCircle()+'px'}"></div>
@@ -61,6 +61,23 @@ export default {
         }
     },
     methods:{
+        mousedowning(event)
+        { 
+            // if(this.isFirst)
+            //   this.play()
+            this.isdrag=true; this.draging(event);
+        },
+        mouseup(event)
+        {
+            this.isdrag=false;  
+            console.log(this.isplay)
+            if(this.isFirst)
+                this.play()
+            else{
+                if(!this.isplay)
+                this.play()
+            }
+        },
          play()
          {
              if(this.isplay) //如果正在播放那就暂停
@@ -102,13 +119,11 @@ export default {
                 return `${this.cutTime/this.player.duration*100}`
             else return '0'
          },
-         mousedowning(){
-
-         },
          draging(event)
          {
             if(this.isdrag)
             this.player.pause()
+            this.isplay=false;
             //获取整个进度条的信息
             const father=event.currentTarget.getBoundingClientRect();
 
