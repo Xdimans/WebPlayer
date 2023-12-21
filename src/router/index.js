@@ -1,22 +1,55 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+import Home from '../views/Home.vue'
+import Library from '../views/Library.vue'
+import Browse from '../views/Browse.vue'
+import Song from '../views/Song.vue'
+import OverView from '../views/Browses/OverView.vue'
+import PlayLists from '../views/Browses/PlayLists.vue'
+import NewReleases from '../views/Browses/NewReleases.vue'
+import Artists from '../views/Browses/Artists.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/', //默认路由界面
+    name: 'Home',
+    component: Home
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/Library',
+    name: 'Library',
+    component: Library
+  }
+  ,
+  {
+    path:'/Browse',
+    name: 'Browse',
+    component: Browse,
+    children:[
+      {
+        path:'Overview',
+        component:OverView
+      },
+      {
+        path:'Playlists',
+        component:PlayLists
+      },
+      {
+        path:'NewReleases',
+        component:NewReleases
+      },
+      {
+        path:'Artists',
+        component:Artists
+      }
+    ]
+  }
+  ,
+  {
+    path:'/Song',
+    name: 'song',
+    component: Song
   }
 ]
 
