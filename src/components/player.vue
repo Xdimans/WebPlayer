@@ -30,7 +30,10 @@
                 <div class="cube"
                     @mousedown="mousedowning($event)"
                     @mouseup="mouseup($event)"
-                    @mousemove="isdrag&&draging($event)">
+                    @mousemove="isdrag&&draging($event)"
+                    @kepup.right="fowward()"
+                    @keyup.left="backword()"
+                    >
                     <div class="cube-now" :style="{width:calcNow()+'%'}">
                         <div class="circle" :style="{left:calcCircle()+'px'}"></div>
                     </div>
@@ -133,6 +136,12 @@ export default {
             const length=father.width;
             this.cutTime=Math.round(this.player.duration*(offsetX/length))
             this.player.currentTime=this.cutTime
+        },
+        forward(){
+
+        },
+        backword(){
+            
         }
     },
     mounted()

@@ -11,14 +11,26 @@
             <div class=" Nav User">HohnDoe</div>
         </div>
       <router-view></router-view>
+      
       <player></player>
    </div>
 </template>
 <script>
+import  Axios from 'axios'
 import  player from './components/player.vue'
 export default {
   name:"app",
-
+  methods:{
+    set(){
+      Axios.get('/json/data.json')
+        .then((data)=>{
+          console.log(data);
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+    }
+  },
   components:{
     player
   }
