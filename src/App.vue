@@ -21,15 +21,7 @@ import  player from './components/player.vue'
 export default {
   name:"app",
   methods:{
-    set(){
-      Axios.get('/json/data.json')
-        .then((data)=>{
-          console.log(data);
-        })
-        .catch((err)=>{
-          console.log(err)
-        })
-    }
+
   },
   components:{
     player

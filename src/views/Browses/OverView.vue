@@ -20,7 +20,7 @@
           <div class="title Play">Playlists</div>
           <div class="pops" >
 
-            <div v-for="(i,index) in Playlists" :key="index">
+            <div v-for="(i,index) in Playlists" :key="index" @click="jump(i)">
               <div class="pop">
                 <img :src="i.coverSrc">
                 <div>{{ i.title }}</div>
@@ -59,10 +59,12 @@
             </div>
           </div>
         </div>
+        <router-view></router-view>
   </div>
 </template>
 
 <script>
+import  Axios  from 'axios'
 export default {
     name:'OverView',
     data(){
@@ -74,8 +76,18 @@ export default {
             
           },
           {
-            name:'Workout Rock',
-            coverSrc:require("../../assets/music_cover/WORKOUT_rock.png")
+            name:'POP Rock',
+            coverSrc:require("@/assets/music_cover/POP ROCK.png")
+            
+          },
+          {
+            name:'ROCK ballads',
+            coverSrc:require("../../assets/music_cover/ROCK ballads.png")
+            
+          },
+          {
+            name:'SOFT ROCK',
+            coverSrc:require("../../assets/music_cover/SOFT ROCK.png")
             
           },
           {
@@ -84,18 +96,8 @@ export default {
             
           },
           {
-            name:'Workout Rock',
-            coverSrc:require("../../assets/music_cover/WORKOUT_rock.png")
-            
-          },
-          {
-            name:'Workout Rock',
-            coverSrc:require("../../assets/music_cover/WORKOUT_rock.png")
-            
-          },
-          {
-            name:'Workout Rock',
-            coverSrc:require("../../assets/music_cover/WORKOUT_rock.png")
+            name:'LOVE ROCK',
+            coverSrc:require("../../assets/music_cover/LOVE ROCK.png")
             
           },
 
@@ -103,28 +105,28 @@ export default {
         ],
         Playlists:[
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 574.png'),
+          title:'list TOP'
           },
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 575.png'),
+          title:'A story'
           },
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 576.png'),
+          title:'POP Music'
           },
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 854.png'),
+          title:'Sad Music'
           },
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 855.png'),
+          title:'FreeOf HumanVoice'
           },
           {
-          coverSrc:require('../../assets/music_cover/POP ROCK.png'),
-          title:'Pop Rock'
+          coverSrc:require('@/assets/music_list/Image 856.png'),
+          title:'Strange Music'
           },
         ],
         Album:[
@@ -192,11 +194,56 @@ export default {
           },
         ]
       }
+    },
+    methods:{
+      jump(src)
+      {
+
+        for(let i=0;i<this.$store.state.MusicList.data.Lists.length;i++)
+        {
+          if(src.title===this.$store.state.MusicList.data.Lists[i].title)
+          {
+                this.$router.push({
+                      path:`${this.$store.state.MusicList.data.Lists[i].path}`,
+                      query:{
+
+                      }
+                      
+              })
+          }
+        }
+        // Axios.get('/json/data.json')
+        // .then((data)=>{
+        //   for(let i=0;i<data.data.Lists.length;i++)
+        //   {
+        //     console.log(src.title)
+        //     // console.log(i.title+'   '+data.data.Lists[i].title)
+        //     // if(i.title===data.data.Lists[i].title)
+        //     // {
+        //     //   console.log(i.title+'   '+data.data.Lists[i].title)
+        //     //         this.$router.push({
+        //     //           path:`${data.data.Lists[i].title}`
+        //     //   })
+        //     // }
+        //   }
+        // })
+        
+      },
+    },
+    beforeCreate(){
+        Axios.get('/json/data.json')
+       .then(data=>{
+        this.$store.state.MusicList=data
+       })
+       
     }
 }
 </script>
   
 <style>
+  .test{
+    color:wheat;
+  }
 .likeNum
 {
   font-size: 15px;

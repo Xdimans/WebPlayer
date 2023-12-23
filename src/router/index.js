@@ -8,6 +8,12 @@ import OverView from '../views/Browses/OverView.vue'
 import PlayLists from '../views/Browses/PlayLists.vue'
 import NewReleases from '../views/Browses/NewReleases.vue'
 import Artists from '../views/Browses/Artists.vue'
+import listTop from '@/views/Browses/PlayLists/listTop'
+import Astory from '@/views/Browses/PlayLists/Astory'
+import POPMusic from '@/views/Browses/PlayLists/POPMusic'
+import SadMusic from '@/views/Browses/PlayLists/SadMusic'
+import FreeVoice from '@/views/Browses/PlayLists/FreeVoice'
+import StrangeMusic from '@/views/Browses/PlayLists/StrangeMusic'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,7 +35,7 @@ const routes = [
     children:[
       {
         path:'Overview',
-        component:OverView
+        component:OverView,
       },
       {
         path:'Playlists',
@@ -42,6 +48,30 @@ const routes = [
       {
         path:'Artists',
         component:Artists
+      },
+      {
+        path:'listTOP',
+        component:listTop
+      },
+      {
+        path:'Astory',
+        component:Astory
+      },
+      {
+        path:'POPMusic',
+        component:POPMusic
+      },
+      {
+        path:'SadMusic',
+        component:SadMusic
+      },
+      {
+        path:'FreeVoice',
+        component:FreeVoice
+      },
+      {
+        path:'StrangeMusic',
+        component:StrangeMusic
       }
     ]
   }
