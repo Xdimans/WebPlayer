@@ -63,4 +63,8 @@ export default {
         /* grid-template-rows: repeat(1,px); */
         grid-template-columns: 50px 600px 450px 400px 50px
     }
+    .list.tip
+    {
+        
+    }
 </style>
