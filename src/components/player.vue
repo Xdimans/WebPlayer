@@ -59,7 +59,6 @@ export default {
             Interval:0,
             cutTime:0,
             isFirst:true,
-
             isdrag:false //是否正在被拖拽
         }
     },
@@ -149,6 +148,9 @@ export default {
          this.player=this.$refs.player;
     },
     beforeUpdate() {
+
+
+
         if(this.isFirst)
         {
             this.isFirst=false
@@ -167,6 +169,18 @@ export default {
         if(this.EndTime==this.currentTime)
             this.play()
     },
+    created()
+    {
+        // this.player=this.$store.state.player
+        // this.isplay=this.$store.state.isplay
+        // this.musicSrc=this.$store.state.musicSrc
+        // this.currentTime=this.$store.state.currentTime
+        // this.EndTime=this.$store.state.EndTime
+        // this.Interval=this.$store.state.Interval
+        // this.cutTime=this.$store.state.cutTime
+        // this.isFirst=this.$store.state.isFirst
+        // this.isdrag=this.$store.state.isdrag
+    }
 }
 </script>
 

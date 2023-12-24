@@ -199,34 +199,34 @@ export default {
       jump(src)
       {
 
-        for(let i=0;i<this.$store.state.MusicList.data.Lists.length;i++)
-        {
-          if(src.title===this.$store.state.MusicList.data.Lists[i].title)
-          {
-                this.$router.push({
-                      path:`${this.$store.state.MusicList.data.Lists[i].path}`,
-                      query:{
-
-                      }
-                      
-              })
-          }
-        }
-        // Axios.get('/json/data.json')
-        // .then((data)=>{
-        //   for(let i=0;i<data.data.Lists.length;i++)
+        // for(let i=0;i<this.$store.state.MusicList.data.Lists.length;i++)
+        // {
+        //   if(src.title===this.$store.state.MusicList.data.Lists[i].title)
         //   {
-        //     console.log(src.title)
-        //     // console.log(i.title+'   '+data.data.Lists[i].title)
-        //     // if(i.title===data.data.Lists[i].title)
-        //     // {
-        //     //   console.log(i.title+'   '+data.data.Lists[i].title)
-        //     //         this.$router.push({
-        //     //           path:`${data.data.Lists[i].title}`
-        //     //   })
-        //     // }
+        //         this.$router.push({
+        //               path:`${this.$store.state.MusicList.data.Lists[i].path}`,
+        //               query:{
+
+        //               }
+                      
+        //       })
         //   }
-        // })
+        // }
+        Axios.get('/json/data.json')
+        .then((data)=>{
+          for(let i=0;i<data.data.Lists.length;i++)
+          {
+            if(src.title===data.data.Lists[i].title)
+            {
+                    this.$router.push({
+                      path:`${data.data.Lists[i].path}`,
+                      query:{
+                        index:i
+                      }
+              })
+            }
+          }
+        })
         
       },
     },
@@ -240,7 +240,7 @@ export default {
 }
 </script>
   
-<style>
+<style scoped>
   .test{
     color:wheat;
   }

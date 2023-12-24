@@ -1,21 +1,24 @@
 <template>
     <div>
+        list Top
     </div>
 </template>
 
 <script>
+import Axios  from 'axios'
 export default {
-    data()
-    {
-        return {
-            data:1
-        }
-    },
-    methods:{},
     created(){
-        this.data=this.$store.state.MusicList.data
-        console.log(this.data)
-    }
+        Axios.get('/json/data.json')
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    },
+    mounted() {
+        // console.log(this.$route.query.id)
+    },
 }
 </script>
 

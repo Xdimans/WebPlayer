@@ -3,43 +3,52 @@
         {
             "path":"listTop",
             "title":"list TOP",
+            "titleCover":"@/asset/music_list/Image 574.png",
             "MusicList":[
                 {
+                    "index":1,
                     "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
                     "singer":"25時、ナイトコードで。",
                     "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
                 },
                 {
+                    "index":2,
                     "title":"おどロボ",
                     "singer":"海茶,琴葉茜・葵,ずんだもん",
                     "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
                 },
                 {
+                    "index":3,
                     "title":"if~ひとり思う~",
                     "singer":"森下弘生",
                     "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
                 },
                 {
+                    "index":4,
                     "title":"傀儡阿修羅",
                     "singer":"柊マグネタイト,星界",
                     "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
                 },
                 {
+                    "index":5,
                     "title":"A rainy dancer 2021",
                     "singer":"r-906 ",
                     "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
                 },
                 {
+                    "index":6,
                     "title":"X.E.N.O",
                     "singer":"sasakure.UK,初音ミク,KAITO",
                     "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
                 },
                 {
+                    "index":7,
                     "title":"folern",
                     "singer":"ぬゆり",
                     "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
                 },
                 {
+                    "index":8,
                     "title":"ぽかぽかの星 (feat. 初音ミク)",
                     "singer":"はるまきごはん,初音ミク",
                     "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
@@ -48,23 +57,278 @@
         },
         {
             "path":"Astory",
-            "title":"A story"
+            "title":"A story",
+            "titleCover":"@/asset/music_list/Image 575.png",
+            "MusicList":[
+                {
+                    "index":1,
+                    "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
+                    "singer":"25時、ナイトコードで。",
+                    "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
+                },
+                {
+                    "index":2,
+                    "title":"おどロボ",
+                    "singer":"海茶,琴葉茜・葵,ずんだもん",
+                    "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
+                },
+                {
+                    "index":3,
+                    "title":"if~ひとり思う~",
+                    "singer":"森下弘生",
+                    "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
+                },
+                {
+                    "index":4,
+                    "title":"傀儡阿修羅",
+                    "singer":"柊マグネタイト,星界",
+                    "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
+                },
+                {
+                    "index":5,
+                    "title":"A rainy dancer 2021",
+                    "singer":"r-906 ",
+                    "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
+                },
+                {
+                    "index":6,
+                    "title":"X.E.N.O",
+                    "singer":"sasakure.UK,初音ミク,KAITO",
+                    "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
+                },
+                {
+                    "index":7,
+                    "title":"folern",
+                    "singer":"ぬゆり",
+                    "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
+                },
+                {
+                    "index":8,
+                    "title":"ぽかぽかの星 (feat. 初音ミク)",
+                    "singer":"はるまきごはん,初音ミク",
+                    "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
+                }
+            ]
         },
         {
             "path":"POPMusic",
-            "title":"POP Music"
+            "title":"POP Music",
+            "titleCover":"@/asset/music_list/Image 576.png",
+            "MusicList":[
+                {
+                    "index":1,
+                    "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
+                    "singer":"25時、ナイトコードで。",
+                    "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
+                },
+                {
+                    "index":2,
+                    "title":"おどロボ",
+                    "singer":"海茶,琴葉茜・葵,ずんだもん",
+                    "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
+                },
+                {
+                    "index":3,
+                    "title":"if~ひとり思う~",
+                    "singer":"森下弘生",
+                    "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
+                },
+                {
+                    "index":4,
+                    "title":"傀儡阿修羅",
+                    "singer":"柊マグネタイト,星界",
+                    "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
+                },
+                {
+                    "index":5,
+                    "title":"A rainy dancer 2021",
+                    "singer":"r-906 ",
+                    "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
+                },
+                {
+                    "index":6,
+                    "title":"X.E.N.O",
+                    "singer":"sasakure.UK,初音ミク,KAITO",
+                    "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
+                },
+                {
+                    "index":7,
+                    "title":"folern",
+                    "singer":"ぬゆり",
+                    "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
+                },
+                {
+                    "index":8,
+                    "title":"ぽかぽかの星 (feat. 初音ミク)",
+                    "singer":"はるまきごはん,初音ミク",
+                    "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
+                }
+            ]
         },
         {
             "path":"SadMusic",
-            "title":"Sad Music"
+            "title":"Sad Music",
+            "titleCover":"@/asset/music_list/Image 854.png",
+            "MusicList":[
+                {
+                    "index":1,
+                    "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
+                    "singer":"25時、ナイトコードで。",
+                    "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
+                },
+                {
+                    "index":2,
+                    "title":"おどロボ",
+                    "singer":"海茶,琴葉茜・葵,ずんだもん",
+                    "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
+                },
+                {
+                    "index":3,
+                    "title":"if~ひとり思う~",
+                    "singer":"森下弘生",
+                    "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
+                },
+                {
+                    "index":4,
+                    "title":"傀儡阿修羅",
+                    "singer":"柊マグネタイト,星界",
+                    "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
+                },
+                {
+                    "index":5,
+                    "title":"A rainy dancer 2021",
+                    "singer":"r-906 ",
+                    "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
+                },
+                {
+                    "index":6,
+                    "title":"X.E.N.O",
+                    "singer":"sasakure.UK,初音ミク,KAITO",
+                    "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
+                },
+                {
+                    "index":7,
+                    "title":"folern",
+                    "singer":"ぬゆり",
+                    "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
+                },
+                {
+                    "index":8,
+                    "title":"ぽかぽかの星 (feat. 初音ミク)",
+                    "singer":"はるまきごはん,初音ミク",
+                    "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
+                }
+            ]
         },
         {
             "path":"FreeVoice",
-            "title":"FreeOf HumanVoice"
+            "title":"FreeOf HumanVoice",
+            "titleCover":"@/asset/music_list/Image 855.png",
+            "MusicList":[
+                {
+                    "index":1,
+                    "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
+                    "singer":"25時、ナイトコードで。",
+                    "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
+                },
+                {
+                    "index":2,
+                    "title":"おどロボ",
+                    "singer":"海茶,琴葉茜・葵,ずんだもん",
+                    "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
+                },
+                {
+                    "index":3,
+                    "title":"if~ひとり思う~",
+                    "singer":"森下弘生",
+                    "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
+                },
+                {
+                    "index":4,
+                    "title":"傀儡阿修羅",
+                    "singer":"柊マグネタイト,星界",
+                    "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
+                },
+                {
+                    "index":5,
+                    "title":"A rainy dancer 2021",
+                    "singer":"r-906 ",
+                    "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
+                },
+                {
+                    "index":6,
+                    "title":"X.E.N.O",
+                    "singer":"sasakure.UK,初音ミク,KAITO",
+                    "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
+                },
+                {
+                    "index":7,
+                    "title":"folern",
+                    "singer":"ぬゆり",
+                    "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
+                },
+                {
+                    "index":8,
+                    "title":"ぽかぽかの星 (feat. 初音ミク)",
+                    "singer":"はるまきごはん,初音ミク",
+                    "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
+                }
+            ]
         },
         {
             "path":"StrangeMusic",
-            "title":"Strange Music"
+            "title":"Strange Music",
+            "titleCover":"@/asset/music_list/Image 856.png",
+            "MusicList":[
+                {
+                    "index":1,
+                    "title":"Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク)",
+                    "singer":"25時、ナイトコードで。",
+                    "src":"@/asset/music_src/listTop/25時、ナイトコードで。 - Iなんです (feat. 宵崎奏&朝比奈まふゆ&東雲絵名&暁山瑞希&初音ミク).mp3"
+                },
+                {
+                    "index":2,
+                    "title":"おどロボ",
+                    "singer":"海茶,琴葉茜・葵,ずんだもん",
+                    "src":"@/asset/music_src/listTop/海茶,琴葉茜・葵,ずんだもん - おどロボ.mp3"
+                },
+                {
+                    "index":3,
+                    "title":"if~ひとり思う~",
+                    "singer":"森下弘生",
+                    "src":"@/asset/music_src/listTop/森下弘生 - if~ひとり思う~.mp3"
+                },
+                {
+                    "index":4,
+                    "title":"傀儡阿修羅",
+                    "singer":"柊マグネタイト,星界",
+                    "src":"@/asset/music_src/listTop/柊マグネタイト,星界 - 傀儡阿修羅.mp3"
+                },
+                {
+                    "index":5,
+                    "title":"A rainy dancer 2021",
+                    "singer":"r-906 ",
+                    "src":"@/asset/music_src/listTop/r-906 - A rainy dancer 2021.mp3"
+                },
+                {
+                    "index":6,
+                    "title":"X.E.N.O",
+                    "singer":"sasakure.UK,初音ミク,KAITO",
+                    "src":"@/asset/music_src/listTop/sasakure.UK,初音ミク,KAITO - X.E.N.O.mp3"
+                },
+                {
+                    "index":7,
+                    "title":"folern",
+                    "singer":"ぬゆり",
+                    "src":"@/asset/music_src/listTop/ぬゆり - folern.mp3"
+                },
+                {
+                    "index":8,
+                    "title":"ぽかぽかの星 (feat. 初音ミク)",
+                    "singer":"はるまきごはん,初音ミク",
+                    "src":"@/asset/music_src/listTop/はるまきごはん,初音ミク - ぽかぽかの星 (feat. 初音ミク).mp3"
+                }
+            ]
         }
     ]
 }
