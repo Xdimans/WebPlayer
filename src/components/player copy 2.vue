@@ -1,6 +1,6 @@
 <template>
 
-    <div class="player-base" >
+    <div class="player-base">
             <audio ref="player" :src="musicSrc"></audio>
         <div class="player-left">
             <!--歌曲封面-->
@@ -8,10 +8,10 @@
             <!--歌曲信息-->
             <div class="player-music-info">
                 <div class="music-name">
-                    {{musicTitle}}
+                    A rainy dancer 2021
                 </div>
                 <div class="music-singer">
-                    {{musicSinger}}
+                    r-906
                 </div>
             </div>
             <img src="../assets/logo/like.png">
@@ -41,131 +41,38 @@
                 <div class="end-time">{{ EndTime }}</div>
             </div>
         </div>
-        <div class="player-right">
-            <img src="@/assets/logo/random.png">
-            <img src="@/assets/logo/Repeat.png">
-        </div>
+        <div class="player-right"></div>
     </div>
 </template>
 
 <script>
-import { nextTick } from 'vue';
 export default {
     name:'player',
     data()
     {
         return{
             player:1,
-            // isplay:this.$store.state.Music_info.isplay,
-            // musicSrc:this.$store.state.Music_info.musicSrc,
-            // currentTime:this.$store.state.Music_info.currentTime,
-            // EndTime:this.$store.state.Music_info.EndTime,
-            // Interval:this.$store.state.Music_info.Interval,
-            // cutTime:this.$store.state.Music_info.cutTime,
-            // isFirst:this.$store.state.Music_info.isFirst,
-            // isdrag:this.$store.state.Music_info.isdrag//是否正在被拖拽
+            isplay:this.$store.state.Music_info.isplay,
+            musicSrc:this.$store.state.Music_info.musicSrc,
+            currentTime:this.$store.state.Music_info.currentTime,
+            EndTime:this.$store.state.Music_info.EndTime,
+            Interval:this.$store.state.Music_info.Interval,
+            cutTime:this.$store.state.Music_info.cutTime,
+            isFirst:this.$store.state.Music_info.isFirst,
+            isdrag:this.$store.state.Music_info.isdrag//是否正在被拖拽
         }
-    },
-    computed:{
-        // ...mapState(['isplay','musicSrc','currentTime','EndTime','Interval','cutTime','isFirst','isdrag'])
-        isplay:{
-            get(){
-                return this.$store.state.isplay
-            },
-            set(v){
-                this.$store.commit('setIsplay',v)
-            }
-        },
-        musicSrc:{
-            get(){
-                return require("@/assets"+this.$store.state.musicSrc)
-            },
-            set(v){
-                this.$store.commit('setMusicSrc',v)
-            }
-        },
-        currentTime:{
-            get(){
-                return this.$store.state.currentTime
-            },
-            set(v){
-                this.$store.commit('setcurrentTime',v)
-            }
-        },
-        EndTime:{
-            get(){
-                return this.$store.state.EndTime
-            },
-            set(v){
-                this.$store.commit('setEndTime',v)
-            }
-        },
-        Interval:{
-            get(){
-                return this.$store.state.Interval
-            },
-            set(v){
-                this.$store.commit('setInterval',v)
-            }
-        },
-        cutTime:{
-            get(){
-                return this.$store.state.cutTime
-            },
-            set(v){
-                this.$store.commit('setCutTime',v)
-            }
-        },
-        isFirst:{
-            get(){
-                return this.$store.state.isFirst
-            },
-            set(v){
-                this.$store.commit('setIsFirst',v)
-            }
-        },
-        isdrag:{
-            get(){
-                return this.$store.state.isdrag
-            },
-            set(v){
-                this.$store.commit('setIsdrag',v)
-            }
-        },
-        isUpdate:{
-            get(){
-                return this.$store.state.isUpdate
-            },
-            set(v){
-                this.$store.commit('setIsUpdate',v)
-            }
-        },
-        musicTitle:{
-            get(){
-                return this.$store.state.musicTitle
-            },
-            set(v){
-                this.$store.commit('setMusicTitle',v)
-            }
-        },
-        musicSinger:{
-            get(){
-                return this.$store.state.musicSinger
-            },
-            set(v){
-                this.$store.commit('setMusicSinger',v)
-            }
-        },
-        
     },
     methods:{
         mousedowning(event)
         { 
+            // if(this.isFirst)
+            //   this.play()
             this.isdrag=true; this.draging(event);
         },
         mouseup(event)
         {
             this.isdrag=false;  
+            console.log(this.isplay)
             if(this.isFirst)
                 this.play()
             else{
@@ -185,12 +92,8 @@ export default {
              else //否则就播放
                  {
                      clearInterval(this.Interval)
-                     /*
-                        如果不清除定时器，进度条在暂停的时候也会涨（
-                     */
                      this.isplay=!this.isplay
                      this.player.play()
-                     //计算屏幕上应该显示的时间↓
                      this.Interval=setInterval(()=>{
                          this.cutTime++;
                          this.currentTime=''
@@ -204,7 +107,7 @@ export default {
                          else
                             this.currentTime+=`${this.cutTime%60}`
                        
-                     },1000)//延时1000表示一秒更新一次时间
+                     },1000)
                  }
          },
          calcCircle(){
@@ -219,7 +122,7 @@ export default {
             else return '0'
          },
          draging(event)
-        {   
+         {
             if(this.isdrag)
             this.player.pause()
             this.isplay=false;
@@ -230,10 +133,6 @@ export default {
             //就可以算出现在进度条的宽度应该在什么位置
             const offsetX=event.clientX-father.left;
             const length=father.width;
-            if(offsetX>length||offsetX<0)
-            {
-                return
-            }
             this.cutTime=Math.round(this.player.duration*(offsetX/length))
             this.player.currentTime=this.cutTime
         },
@@ -251,9 +150,6 @@ export default {
     beforeUpdate() {
         if(this.isFirst)
         {
-            /*
-                如果是一首歌刚刚开始播放，我们需要计算一下一首歌的结束时间
-            */
             this.isFirst=false
             this.EndTime=''
             let tmp=this.player.duration
@@ -267,42 +163,20 @@ export default {
             else
                     this.EndTime+=`${parseInt(tmp%60)}`
         }
-        //默认模式：如果说已经播放完，自动暂停
         if(this.EndTime==this.currentTime)
             this.play()
-        //连续播放模式
-        //随机播放模式
     },
-    watch:{
-        isUpdate:{
-            handler(newValue,oldValue)
-            {
-                if(newValue===true) //如果说确实在更新（而不是下面的那条语句导致this.update=false
-                {
-                    this.isUpdate=false;
-                    nextTick(()=>{
-                        if(this.isplay===false)
-                        {
-                            this.play() //如果说没有在播放，那么自动开始播放
-                        }
-                        else{
-                            this.player.play() //如果说有在播放，但是切换歌曲后歌曲会被自动暂停的，直接用原生的播放
-                        }
-
-                        if(this.player.currentTime>0) 
-                            this.player.currentTime=0
-                        /*
-                            如果说点击的是同一首歌，因为musicSrc相同，
-                            原生播放器的开始时间不会被自动清零，而我们已经
-                            把currentTime和cutTime都清零了，为了保持一致，
-                            原生播放器的时间也要清零
-                        */
-                    })
-                    
-                   
-                }
-            }
-        },
+    created()
+    {
+        // this.player=this.$store.state.player
+        // this.isplay=this.$store.state.isplay
+        // this.musicSrc=this.$store.state.musicSrc
+        // this.currentTime=this.$store.state.currentTime
+        // this.EndTime=this.$store.state.EndTime
+        // this.Interval=this.$store.state.Interval
+        // this.cutTime=this.$store.state.cutTime
+        // this.isFirst=this.$store.state.isFirst
+        // this.isdrag=this.$store.state.isdrag
     }
 }
 </script>
@@ -326,7 +200,7 @@ export default {
         background-color: rgb(56, 56, 56);
         flex-grow: 0.3;
         display:grid;
-        grid-template-columns: 50px 220px 20px;
+        grid-template-columns: 50px 155px 20px;
         grid-column-gap: 20px;
         align-items: center;
     }
@@ -370,15 +244,7 @@ export default {
         display: flex;
         align-items: center;
     }
-    .music-name{
-        margin-bottom:10px;
-        height: 21px;
-        overflow:auto
 
-    }
-    .music-singer{
-        overflow: auto;
-    }
     .player-btn{
         flex-grow: 3;
         display: grid;
