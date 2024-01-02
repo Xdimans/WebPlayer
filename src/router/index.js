@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Library from '../views/Library.vue'
+import Like from '../views/Like.vue'
 import Browse from '../views/Browse.vue'
 import Song from '../views/Song.vue'
 import OverView from '../views/Browses/OverView.vue'
@@ -23,9 +23,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/Library',
-    name: 'Library',
-    component: Library
+    path: '/Like',
+    name: 'Like',
+    component: Like
   }
   ,
   {

@@ -4,8 +4,8 @@
         <div class="nav">
             <img class="Img" src="./assets/Full_Logo.png">
             <router-link to="/" exact-active-class="NavTop Router" class="a Home">Home</router-link>
-            <router-link to="/Library" active-class="NavTop Router" class="a Library">Library</router-link>
-            <router-link to="/Browse" active-class="NavTop Router" class="a Browse">Browse</router-link>
+            <router-link to="/Like" active-class="NavTop Router" class="a Library">LikeList</router-link>
+            <router-link to="/Browse/Overview" active-class="NavTop Router" class="a Browse">Browse</router-link>
             <router-link to="/Song" name="Song"  active-class="Nav Song" class="a Song">The Smashing Pumpkins / Mellon Collie and the Infinite Sadness</router-link>
             <input class="Nav Search" placeholder="Search">
             <div class=" Nav User">HohnDoe</div>

@@ -22,8 +22,8 @@
                     <div class="music-index">{{ i.index }}</div>
                     <div class="music-title">{{ i.title }}</div>
                     <div class="music-singer">{{ i.singer }}</div>
-                    <div class="music-album">专辑</div>
-                    <div class="music-time">时长</div>
+                    <div class="music-album">Known Album</div>
+                    <div class="music-time">03:00</div>
                     <img src="@/assets/logo/continue.png" @click="update(i)">
                 </div>
                 <hr/>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Axios  from 'axios'
+import Axios from 'axios'
 export default {
     data(){
         return{
@@ -57,13 +57,17 @@ export default {
             this.$store.commit('setMusicSrc',i.src)
             this.$store.commit('setcurrentTime','00:00')
             this.$store.commit('setEndTime','00:00')
-            this.$store.commit('setInterval',0)
+            // this.$store.commit('setInterval',0)
             this.$store.commit('setCutTime',0)
             this.$store.commit('setIsFirst',true)
             this.$store.commit('setIsdrag',false)
             this.$store.commit('setIsUpdate',true)
             this.$store.commit('setMusicTitle',i.title)
+            this.$store.commit('setListLength',this.musicList.MusicList.length)
+            this.$store.commit('setNowIndex',i.index)
+            this.$store.commit('setListId',this.musicList.listId)
             this.$store.commit('setMusicSinger',i.singer)
+            console.log (i.singer)
         }
     }
 }

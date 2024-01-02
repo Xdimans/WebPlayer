@@ -198,20 +198,6 @@ export default {
     methods:{
       jump(src)
       {
-
-        // for(let i=0;i<this.$store.state.MusicList.data.Lists.length;i++)
-        // {
-        //   if(src.title===this.$store.state.MusicList.data.Lists[i].title)
-        //   {
-        //         this.$router.push({
-        //               path:`${this.$store.state.MusicList.data.Lists[i].path}`,
-        //               query:{
-
-        //               }
-                      
-        //       })
-        //   }
-        // }
         Axios.get('/json/data.json')
         .then((data)=>{
           for(let i=0;i<data.data.Lists.length;i++)

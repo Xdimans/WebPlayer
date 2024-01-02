@@ -14,15 +14,16 @@
                     {{musicSinger}}
                 </div>
             </div>
-            <img src="../assets/logo/like.png">
+            <img v-if="!islike" @click="like()" src="../assets/logo/like.png">
+            <img v-if="islike" @click="like()" src="../assets/logo/like_true.png">
         </div>
         <div class="player-mid">
             <!--功能区-->
             <div class="player-btn">
-                <img class="prev" src="../assets/logo/prev.png">
+                <img class="prev" @click="left()" src="../assets/logo/prev.png">
                 <img v-show="!isplay" class="continue" @click="play" src="../assets/logo/continue.png">
                 <img v-show="isplay" class="pause" @click="play" src="../assets/logo/Pause.png"> 
-                <img class="next" src="../assets/logo/next.png">
+                <img class="next" @click="right()" src="../assets/logo/next.png">
             </div>
             <!--进度条-->
             <div class="player-cube">
@@ -30,9 +31,10 @@
                 <div class="cube"
                     @mousedown="mousedowning($event)"
                     @mouseup="mouseup($event)"
-                    @mousemove="isdrag&&draging($event)"
-                    @kepup.right="fowward()"
-                    @keyup.left="backword()"
+                    @mousemove="mousemove($event)"
+                    @mouseover="mouseover($event)"
+                    @kepdown.right="right()"
+                    @keydown.left="left()"
                     >
                     <div class="cube-now" :style="{width:calcNow()+'%'}">
                         <div class="circle" :style="{left:calcCircle()+'px'}"></div>
@@ -41,33 +43,39 @@
                 <div class="end-time">{{ EndTime }}</div>
             </div>
         </div>
-        <div class="player-right">
-            <img src="@/assets/logo/random.png">
-            <img src="@/assets/logo/Repeat.png">
+        <div class="player-right" @click="changeType()">
+            <img class="type-button" v-show="playType==0" src="@/assets/logo/single.png">
+            <img class="type-button"  v-show="playType==2" src="@/assets/logo/random.png">
+            <img class="type-button"  v-show="playType==1" src="@/assets/logo/Repeat.png">
         </div>
     </div>
 </template>
 
 <script>
-import { nextTick } from 'vue';
+import Axios  from 'axios'
+import { nextTick, set } from 'vue';
 export default {
     name:'player',
     data()
     {
         return{
             player:1,
-            // isplay:this.$store.state.Music_info.isplay,
-            // musicSrc:this.$store.state.Music_info.musicSrc,
-            // currentTime:this.$store.state.Music_info.currentTime,
-            // EndTime:this.$store.state.Music_info.EndTime,
-            // Interval:this.$store.state.Music_info.Interval,
-            // cutTime:this.$store.state.Music_info.cutTime,
-            // isFirst:this.$store.state.Music_info.isFirst,
-            // isdrag:this.$store.state.Music_info.isdrag//是否正在被拖拽
+            musicList:1,
         }
     },
     computed:{
         // ...mapState(['isplay','musicSrc','currentTime','EndTime','Interval','cutTime','isFirst','isdrag'])
+        islike:
+        {
+            get()
+            {
+                return this.$store.state.islike
+            },
+            set(v)
+            {
+                this.$store.commit('setIslike',v)
+            }
+        },
         isplay:{
             get(){
                 return this.$store.state.isplay
@@ -156,9 +164,78 @@ export default {
                 this.$store.commit('setMusicSinger',v)
             }
         },
+        playType:{
+            get(){
+                return this.$store.state.playType
+            },
+            set(v){
+                this.$store.commit('setPlayType',v)
+            }
+        },
+        listLength:{
+            get(){
+                return this.$store.state.listLength
+            },
+            set(v){
+                this.$store.commit('setListLength',v)
+            }
+        },
+        nowIndex:{
+            get(){
+                return this.$store.state.nowIndex
+            },
+            set(v){
+                this.$store.commit('setNowIndex',v)
+            }
+        },
+        listId:{
+            get(){
+                return this.$store.state.listId
+            },
+            set(v){
+                this.$store.commit('setListId',v)
+            }
+        },
+
         
     },
     methods:{
+        like()
+        {
+            if(this.islike==true) //如果现在要取消喜欢
+            {
+                
+                for(let i in this.$store.state.likeList.MusicList)
+            {
+                if(this.musicTitle===this.$store.state.likeList.MusicList[i].title)
+                {
+                    this.$store.state.likeList.MusicList.splice(i,1)
+                    
+                }
+            }
+            }
+            else{
+                this.$store.state.likeList.MusicList.push({
+                    index:this.$store.state.likeList.MusicList.length,
+                    title:this.musicTitle,
+                    singer:this.musicSinger,
+                    src:this.$store.state.musicSrc
+                })
+            }
+            this.islike=!this.islike
+        },
+
+        mouseover(event)
+        {
+            if(this.isdrag===true)
+            this.draging(event)
+        },
+        mousemove(event)
+        {
+            
+            if(this.isdrag===true)
+            this.draging(event)
+        },
         mousedowning(event)
         { 
             this.isdrag=true; this.draging(event);
@@ -166,12 +243,7 @@ export default {
         mouseup(event)
         {
             this.isdrag=false;  
-            if(this.isFirst)
                 this.play()
-            else{
-                if(!this.isplay)
-                this.play()
-            }
         },
          play()
          {
@@ -184,6 +256,7 @@ export default {
 
              else //否则就播放
                  {
+                                            
                      clearInterval(this.Interval)
                      /*
                         如果不清除定时器，进度条在暂停的时候也会涨（
@@ -220,7 +293,8 @@ export default {
          },
          draging(event)
         {   
-            if(this.isdrag)
+            clearInterval(this.Interval)
+            // if(this.isdrag)
             this.player.pause()
             this.isplay=false;
             //获取整个进度条的信息
@@ -230,48 +304,193 @@ export default {
             //就可以算出现在进度条的宽度应该在什么位置
             const offsetX=event.clientX-father.left;
             const length=father.width;
-            if(offsetX>length||offsetX<0)
+            if(offsetX>=length-5||offsetX<=0)
             {
                 return
             }
             this.cutTime=Math.round(this.player.duration*(offsetX/length))
             this.player.currentTime=this.cutTime
-        },
-        forward(){
+            //下面的内容是在拖拽的时候动态计算当前时长
+            this.currentTime=''
+                         if(parseInt(this.cutTime/60)<10)
+                            this.currentTime+=`0${parseInt(this.cutTime/60)}:`
+                         else
+                            this.currentTime+=`${parseInt(this.cutTime/60)}`
 
+                         if(this.cutTime%60<10)
+                            this.currentTime+=`0${this.cutTime%60}`
+                         else
+                            this.currentTime+=`${this.cutTime%60}`
         },
-        backword(){
-            
+        left(){//后退
+            if(this.cutTime>=5)
+            {
+                this.cutTime-=5;
+                this.player.currentTime-=5
+            }
+            else{
+                this.cutTime-=this.cutTime
+                this.player.currentTime=0
+            }
+        },
+        right(){//快进
+            if(this.cutTime<this.player.duration-5)
+            {
+                this.cutTime+=5;
+                this.player.currentTime+=5
+            }
+            else
+            {
+                
+                this.cutTime=parseInt(Math.floor(this.player.duration))-2
+                this.player.currentTime=this.player.duration
+            }
+        },
+        changeType(){ //切换播放模式
+            this.playType=(this.playType+1)%3
+        },
+        Nextupdate(){ //播放完了，根据当前模仿模式决定接下来要干嘛
+           
+        //默认模式：如果说已经播放完，自动暂停
+        if(this.playType===0&&this.currentTime===this.EndTime)
+        {
+            if(this.isdrag==false)
+            this.play()
         }
+
+        
+        else{
+            this.$store.commit('setcurrentTime','00:00')
+            this.$store.commit('setEndTime','00:00')
+            // this.$store.commit('setInterval',0)
+            this.$store.commit('setCutTime',0)
+            this.$store.commit('setIsFirst',true)
+            this.$store.commit('setIsdrag',false)
+            this.$store.commit('setIsUpdate',true)
+
+            if(this.listId==='6')//如果正在播收藏列表
+            {
+                if(this.playType===1)
+                {
+                    this.$store.commit('setNowIndex',(this.nowIndex+1)%this.listLength)
+                    this.$store.commit('setMusicSrc',this.$store.state.likeList.MusicList[this.nowIndex].src)
+                    this.$store.commit('setMusicTitle',this.$store.state.likeList.MusicList[this.nowIndex].title)
+                    this.$store.commit('setMusicSinger',this.$store.state.likeList.MusicList[this.nowIndex].singer)
+                    this.play()
+                }
+                else if(this.playType===2)
+                {
+                    
+                    let randomIndex=Math.floor(Math.random()*this.listLength)
+                    if(this.nowIndex===randomIndex)
+                    {
+                        randomIndex=(randomIndex+1)%this.listLength //如果说生成的随机数和原来的一样，那就换下一首
+                    }
+
+                    this.$store.commit('setMusicSrc',this.$store.state.likeList.MusicList[this.nowIndex].src)
+                    this.$store.commit('setMusicTitle',this.$store.state.likeList.MusicList[this.nowIndex].title)
+                    this.$store.commit('setNowIndex',this.$store.state.likeList.MusicList[this.nowIndex].index)
+                    this.$store.commit('setMusicSinger',this.$store.state.likeList.MusicList[this.nowIndex].singer)
+                    this.play()
+                }
+            }
+        //如果没在播收藏列表
+        else
+        {
+            //连续播放模式
+        if(this.playType===1)
+        {
+            this.$store.commit('setNowIndex',(this.nowIndex+1)%this.listLength)
+            this.$store.commit('setMusicSrc',this.musicList[this.listId].MusicList[this.nowIndex].src)
+            this.$store.commit('setMusicTitle',this.musicList[this.listId].MusicList[this.nowIndex].title)
+            this.$store.commit('setMusicSinger',this.musicList[this.listId].MusicList[this.nowIndex].singer)
+            this.play()
+        }
+
+        //随机播放模式
+        else if(this.playType===2)
+        {
+            
+            let randomIndex=Math.floor(Math.random()*this.listLength)
+            if(this.nowIndex===randomIndex)
+            {
+                randomIndex=(randomIndex+1)%this.listLength //如果说生成的随机数和原来的一样，那就换下一首
+            }
+
+            this.$store.commit('setMusicSrc',this.musicList[this.listId].MusicList[randomIndex].src)
+            this.$store.commit('setMusicTitle',this.musicList[this.listId].MusicList[randomIndex].title)
+            this.$store.commit('setNowIndex',this.musicList[this.listId].MusicList[randomIndex].index)
+            this.$store.commit('setMusicSinger',this.musicList[this.listId].MusicList[randomIndex].singer)
+            this.play()
+        }
+    }
+    
+    }
+},
     },
     mounted()
     {
          this.player=this.$refs.player;
     },
+    
     beforeUpdate() {
+
         if(this.isFirst)
         {
             /*
                 如果是一首歌刚刚开始播放，我们需要计算一下一首歌的结束时间
             */
-            this.isFirst=false
-            this.EndTime=''
-            let tmp=this.player.duration
-            if(parseInt(tmp/60)<10)
-                    this.EndTime+=`0${parseInt(tmp/60)}:`
-            else
-                    this.EndTime+=`${parseInt(tmp/60)}`
-
-            if(parseInt(tmp%60)<10)
-                    this.EndTime+=`0${tmp%60}`
-            else
-                    this.EndTime+=`${parseInt(tmp%60)}`
+            this.EndTime='00:00'
         }
-        //默认模式：如果说已经播放完，自动暂停
-        if(this.EndTime==this.currentTime)
-            this.play()
-        //连续播放模式
-        //随机播放模式
+        if(this.currentTime!='00:00'&&this.EndTime===this.currentTime&&this.isplay===true)
+        {
+            // 如果说一首歌播完了，那就根据播放种类更新歌曲信息
+            this.Nextupdate()
+        }
+        
+    },
+    updated()
+    {
+        if(this.isFirst===true)
+        {
+        let a=setInterval(()=>{
+                
+                if(!isNaN(this.player.duration))
+                {
+                    this.isFirst=false;
+                    this.EndTime=''
+                    let tmp=this.player.duration
+                    
+                    if(parseInt(tmp/60)<10)
+                            this.EndTime+=`0${parseInt(tmp/60)}:`
+                    else
+                            this.EndTime+=`${parseInt(tmp/60)}`
+
+                    if(parseInt(tmp%60)<10)
+                            this.EndTime+=`0${parseInt(tmp%60)}`
+                    else
+                            this.EndTime+=`${parseInt(tmp%60)}`    
+                }
+            })
+        }
+    },
+    created(){
+        Axios.get('/json/data.json')
+        .then(res=>{
+            this.musicList=res.data.Lists
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        this.islike=false
+        for(let i of this.$store.state.likeList.MusicList)
+        {
+            // console.log(i)
+            if(this.musicTitle==i.title)
+            {
+            this.islike=true;
+            }
+        }
     },
     watch:{
         isUpdate:{
@@ -281,16 +500,20 @@ export default {
                 {
                     this.isUpdate=false;
                     nextTick(()=>{
-                        if(this.isplay===false)
-                        {
-                            this.play() //如果说没有在播放，那么自动开始播放
-                        }
-                        else{
-                            this.player.play() //如果说有在播放，但是切换歌曲后歌曲会被自动暂停的，直接用原生的播放
-                        }
-
+                        this.isplay=false
+                        this.play() 
+                                //很奇妙，不知道为什么，只有这样写才行
                         if(this.player.currentTime>0) 
                             this.player.currentTime=0
+
+                            this.islike=false
+                            for(let i of this.$store.state.likeList.MusicList)
+                            {
+                                if(this.musicTitle==i.title)
+                                {
+                                this.islike=true;
+                                }
+                            }
                         /*
                             如果说点击的是同一首歌，因为musicSrc相同，
                             原生播放器的开始时间不会被自动清零，而我们已经
@@ -298,8 +521,7 @@ export default {
                             原生播放器的时间也要清零
                         */
                     })
-                    
-                   
+
                 }
             }
         },
@@ -384,5 +606,9 @@ export default {
         display: grid;
         grid-template-columns: repeat(3,50px);
         align-items: center;
+    }
+    .type-button
+    {
+        margin-top: 15px
     }
 </style>
