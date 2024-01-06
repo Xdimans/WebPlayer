@@ -57,7 +57,6 @@ export default {
             this.$store.commit('setMusicSrc',i.src)
             this.$store.commit('setcurrentTime','00:00')
             this.$store.commit('setEndTime','00:00')
-            // this.$store.commit('setInterval',0)
             this.$store.commit('setCutTime',0)
             this.$store.commit('setIsFirst',true)
             this.$store.commit('setIsdrag',false)

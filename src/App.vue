@@ -12,19 +12,25 @@
         </div>
       <router-view></router-view>
       
+      <to-top></to-top>
+      <to-down></to-down>
       <player></player>
    </div>
 </template>
 <script>
 import  Axios from 'axios'
 import  player from './components/player.vue'
+import ToTop from './components/toTop.vue'
+import ToDown from './components/toDown.vue'
 export default {
   name:"app",
   methods:{
 
   },
   components:{
-    player
+    player,
+    ToTop,
+    ToDown
   }
 }
 </script>
